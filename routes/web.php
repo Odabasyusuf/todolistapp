@@ -15,18 +15,21 @@ use App\Http\Controllers\panel\IndexController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('login');
 });
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified'
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-});
+//Route::middleware([
+//    'auth:sanctum',
+//    config('jetstream.auth_session'),
+//    'verified'
+//])->group(function () {
+//    Route::get('/dashboard', function () {
+//        return view('dashboard');
+//    })->name('dashboard');
+//});
 
-Route::get('/todolist', [IndexController::class, 'index'])->name('todolist-dashboard');
-Route::get('/category/{slug}', [IndexController::class, 'category'])->name('category-page');
+Route::get('/dashboard', [IndexController::class, 'index'])->middleware('auth:sanctum')->name('dashboard');
+
+Route::group(['middleware' => ['auth:sanctum'], 'as' => 'todolist.'], function () {
+    Route::get('/category/{slug}', [IndexController::class, 'category'])->name('category-page');
+});
