@@ -1,3 +1,29 @@
+<div>
+<div class="deznav">
+    <div class="deznav-scroll">
+        <ul class="metismenu" id="menu">
+            <li>
+                <a href="#" class="ai-icon" aria-expanded="false">
+                    <i class="flaticon-381-settings-2"></i>
+                    <span class="nav-text">Anasayfa</span>
+                </a>
+            </li>
+
+            @foreach($categories as $category)
+            <li>
+                <a href="{{ route('category-page', $category->slug) }}" class="ai-icon" aria-expanded="false">
+                    <i class="flaticon-381-settings-2"></i>
+                    <span class="nav-text">{{ $category->name }}</span>
+                </a>
+            </li>
+            @endforeach
+
+
+        </ul>
+        <a href="javascript:void(0)" wire:click="resetInfo()" class="add-menu-sidebar" data-toggle="modal" data-target="#addOrderModalside" >+ Kategori Ekle</a>
+
+    </div>
+</div>
 <div wire:ignore.self class="modal fade" id="addOrderModalside">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -10,11 +36,11 @@
                 <form wire:submit.prevent="addCategory">
                     @if (session()->has('error'))
                         <div class="alert alert-warning alert-dismissible fade show">
-                        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
-                        {{ session('error') }}
-                        <button type="button" class="close h-100" data-dismiss="alert" aria-label="Close"><span><i class="mdi mdi-close"></i></span>
-                        </button>
-                    </div>
+                            <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                            {{ session('error') }}
+                            <button type="button" class="close h-100" data-dismiss="alert" aria-label="Close"><span><i class="mdi mdi-close"></i></span>
+                            </button>
+                        </div>
                     @endif
                     @if (session()->has('success'))
                         <div class="alert alert-success alert-dismissible fade show">
@@ -40,4 +66,5 @@
             </div>
         </div>
     </div>
+</div>
 </div>

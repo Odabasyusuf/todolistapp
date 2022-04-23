@@ -29,3 +29,4 @@ Route::middleware([
 });
 
 Route::get('/todolist', [IndexController::class, 'index'])->name('todolist-dashboard');
+Route::get('/category/{slug}', [IndexController::class, 'category'])->name('category-page');

@@ -34,7 +34,6 @@
 
     <div class="content-body">
         <div class="container-fluid">
-            <livewire:new-category-modal />
             @yield('content')
         </div>
     </div>

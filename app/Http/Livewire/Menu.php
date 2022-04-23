@@ -3,27 +3,29 @@
 namespace App\Http\Livewire;
 
 use App\Models\Category;
+use Illuminate\Support\Str;
 use Livewire\Component;
 
-class NewCategoryModal extends Component
+class Menu extends Component
 {
     public $name;
 
     public function render()
     {
-        return view('livewire.new-category-modal');
+        $categories = Category::query()->where('status', 1)->get();
+        return view('livewire.menu', compact(['categories']));
     }
 
     public function addCategory(){
         $newCategory = new Category();
         $newCategory->name = $this->name;
+        $newCategory->slug = Str::slug($this->name, '-');
         $newCategory->save();
 
         $this->resetInfo();
 
         session()->flash('success', 'Kategori eklendi.');
     }
-
 
     public function resetInfo(){
         $this->name = null;
