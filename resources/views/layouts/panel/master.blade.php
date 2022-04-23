@@ -12,6 +12,9 @@
     <link href="{{ asset('assets/panel') }}/vendor/owl-carousel/owl.carousel.css" rel="stylesheet">
     <link href="{{ asset('assets/panel') }}/css/style.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+
+    @livewireStyles
+
 </head>
 <body>
 
@@ -31,37 +34,7 @@
 
     <div class="content-body">
         <div class="container-fluid">
-            <div class="modal fade" id="addOrderModalside">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Add Event</h5>
-                            <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form>
-                                <div class="form-group">
-                                    <label class="text-black font-w500">Event Name</label>
-                                    <input type="text" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label class="text-black font-w500">Event Date</label>
-                                    <input type="date" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label class="text-black font-w500">Description</label>
-                                    <input type="text" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <button type="button" class="btn btn-primary">Create</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+            <livewire:new-category-modal />
             @yield('content')
         </div>
     </div>
@@ -130,5 +103,8 @@
         }, 1000);
     });
 </script>
+
+@livewireScripts
+
 </body>
 </html>
