@@ -10,6 +10,8 @@ class CreateListHeadingsTable extends Migration
     {
         Schema::create('list_headings', function (Blueprint $table) {
             $table->id();
+            $table->integer('user_id')->nullable();
+            $table->integer('category_id')->nullable();
             $table->string('name')->nullable();
             $table->string('detail')->nullable();
             $table->smallInteger('status')->default(0)->comment('0-Yapılacak 1-Tamamlandı 2-Yapılıyor');

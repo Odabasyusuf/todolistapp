@@ -3,11 +3,5 @@
 @section('title', $category->name)
 
 @section('content')
-
-    <div class="row">
-        <div class="col-md-12">
-                asd
-        </div>
-    </div>
-
+    <livewire:category-page :category_id="$category->id" />
 @endsection
