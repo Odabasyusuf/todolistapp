@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Todo List App</title>
 
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/panel') }}/images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/panel') }}/images/web.png">
     <link rel="stylesheet" href="{{ asset('assets/panel') }}/vendor/chartist/css/chartist.min.css">
     <link href="{{ asset('assets/panel') }}/vendor/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
     <link href="{{ asset('assets/panel') }}/vendor/owl-carousel/owl.carousel.css" rel="stylesheet">

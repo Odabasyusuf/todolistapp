@@ -1,9 +1,9 @@
 <div class="nav-header  text-center">
     <a href="{{ route('dashboard') }}" class="brand-logo">
-{{--        <img class="logo-abbr" src="{{ asset('assets/panel') }}/images/logo.png" alt="">--}}
+        <img class="logo-abbr" src="{{ asset('assets/panel') }}/images/web.png" alt="">
 {{--        <img class="logo-compact" src="{{ asset('assets/panel') }}/images/logo-text.png" alt="">--}}
 {{--        <img class="brand-title" src="{{ asset('assets/panel') }}/images/logo-text.png" alt="">--}}
-        <h1> Todo List </h1>
+        <h2 class="brand-title"> Todo List </h2>
     </a>
 
     <div class="nav-control">

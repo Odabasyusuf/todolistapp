@@ -17,8 +17,7 @@
                 </a>
             </li>
             @endforeach
-
-
+            
         </ul>
         <a href="javascript:void(0)" wire:click="resetInfo()" class="add-menu-sidebar" data-toggle="modal" data-target="#addOrderModalside" >+ Kategori Ekle</a>
 

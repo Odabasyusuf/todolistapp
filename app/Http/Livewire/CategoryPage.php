@@ -17,6 +17,9 @@ class CategoryPage extends Component
 
     public $new_list_name, $category_id;
     public $statusSelectBox;
+    public $selectedList;
+    public $update_list_name, $selectedList_id;
+    public $newContentName;
 
     public function render()
     {
@@ -33,7 +36,7 @@ class CategoryPage extends Component
                         ->where('status', $this->statusSelectBox);
                 }
             })
-//            ->orderBy('status', 'ASC')
+            ->orderBy('id', 'DESC')
             ->paginate(12);
 
 
@@ -52,6 +55,15 @@ class CategoryPage extends Component
         session()->flash('success', 'Liste eklendi.');
     }
 
+    public function addNewContent($heading_id){
+        $newContent = new ListContent();
+        $newContent->name = $this->newContentName;
+        $newContent->list_heading_id = $heading_id;
+        if ($this->newContentName != null) $newContent->save();
+
+        $this->resetInfo();
+    }
+
     public function changeStatusList($id, $newStatus){
         $selectedList = ListHeading::find($id);
         $selectedList->status = $newStatus;
@@ -64,8 +76,36 @@ class CategoryPage extends Component
         $selectedContent->save();
     }
 
+    public function getList(ListHeading $listHeading){
+        $this->resetInfo();
+
+        $this->update_list_name = $listHeading->name;
+        $this->selectedList_id = $listHeading->id;
+    }
+
+    public function updateList(){
+        $selectedList = ListHeading::find($this->selectedList_id);
+        $selectedList->name = $this->update_list_name;
+        $selectedList->save();
+
+        session()->flash('success', 'Liste Güncellendi');
+    }
+
+    public function listDelete($id){
+        $selectedList = ListHeading::find($id);
+        $listContents = ListContent::query()->where('list_heading_id', $selectedList->id)->delete();
+        $selectedList->delete();
+    }
+
+    public function contentDelete($id){
+        $selectedContent = ListContent::find($id);
+        $selectedContent->delete();
+    }
+
     public function resetInfo(){
         $this->new_list_name = null;
+        $this->update_list_name = null;
+        $this->newContentName = null;
         session()->forget('message');
         session()->forget('success');
         $this->resetValidation();
