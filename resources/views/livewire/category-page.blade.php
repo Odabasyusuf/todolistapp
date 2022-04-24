@@ -1,6 +1,6 @@
 <div>
     <div class="row mb-4">
-        <div class="col-xl-3">
+        <div class="col-md-3">
             <div class="form-group">
                 <select wire:model.lazy="statusSelectBox" class="form-control default-select">
                     <option value="">Tümü</option>
@@ -9,12 +9,12 @@
                 </select>
             </div>
         </div>
-        <div class="col-xl-6 text-left">
+        <div class="col-md-6 text-left">
             <div wire:loading class="spinner-border" role="status">
                 <span class="sr-only">Loading...</span>
             </div>
         </div>
-        <div class="col-xl-3 text-right">
+        <div class="col-md-3 text-right">
             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addNewList"> + Yeni Liste Oluştur</button>
         </div>
     </div>
