@@ -53,9 +53,13 @@
     </div>
 
     <div class="page-titles mb-0 mt-2 text-center">
-        <h3> Kategoriler </label>
+        <h3> Kategoriler </h3>
     </div>
-
+    @if($categories->count() == 0)
+    <div class="alert alert-dark alert-dismissible alert-square text-center">
+        <strong></strong> Henüz Kategori Oluşturmadınız!
+    </div>
+    @endif
     <div class="row mt-0">
         @foreach($categories as $category)
             <div class="col-lg-4 col-sm-6">

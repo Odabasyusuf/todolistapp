@@ -138,5 +138,31 @@ class ListContentTableSeeder extends Seeder
             'name' => '15 Squat',
             'status' => '1',
         ]);
+
+
+        DB::table('list_contents')->insert([
+            'id' => 21,
+            'list_heading_id' => '7',
+            'name' => 'Kira',
+            'status' => '1',
+        ]);
+        DB::table('list_contents')->insert([
+            'id' => 22,
+            'list_heading_id' => '7',
+            'name' => 'Elektrik',
+            'status' => '1',
+        ]);
+        DB::table('list_contents')->insert([
+            'id' => 23,
+            'list_heading_id' => '7',
+            'name' => 'Su',
+            'status' => '1',
+        ]);
+        DB::table('list_contents')->insert([
+            'id' => 24,
+            'list_heading_id' => '7',
+            'name' => 'Doğalgaz',
+            'status' => '1',
+        ]);
     }
 }

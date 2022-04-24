@@ -12,14 +12,20 @@ class UserTableSeeder extends Seeder
     {
         DB::table('users')->insert([
             'id' => 1,
-            'name' => 'Yusuf Odabaş',
-            'email' => 'yusuf@test.com',
+            'name' => 'User Test',
+            'email' => 'user@test.com',
             'password' => Hash::make('test'),
         ]);
         DB::table('users')->insert([
             'id' => 2,
-            'name' => 'Test User',
-            'email' => 'user@test.com',
+            'name' => 'Empty Project',
+            'email' => 'empty@test.com',
+            'password' => Hash::make('test'),
+        ]);
+        DB::table('users')->insert([
+            'id' => 3,
+            'name' => 'Yusuf Odabaş',
+            'email' => 'yusuf@test.com',
             'password' => Hash::make('test'),
         ]);
     }

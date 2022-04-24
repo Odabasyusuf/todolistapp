@@ -25,6 +25,7 @@ class ListHeadingTableSeeder extends Seeder
             'status' => '0',
         ]);
 
+
         DB::table('list_headings')->insert([
             'id' => 3,
             'user_id' => '1',
@@ -48,13 +49,21 @@ class ListHeadingTableSeeder extends Seeder
             'name' => 'Temizlik',
             'status' => '1',
         ]);
-
         DB::table('list_headings')->insert([
             'id' => 6,
             'user_id' => '1',
             'category_id' => '3',
             'name' => 'Spor',
             'status' => '0',
+        ]);
+
+
+        DB::table('list_headings')->insert([
+            'id' => 7,
+            'user_id' => '1',
+            'category_id' => '1',
+            'name' => 'Ödemeler',
+            'status' => '1',
         ]);
     }
 }
