@@ -1,15 +1,17 @@
 <div>
     <div class="row mb-4">
-        <div class="col-xl-9">
-            <div class="dropdown custom-dropdown show">
-                <button type="button" class="btn btn-sm btn-outline-primary" data-toggle="dropdown" aria-expanded="true">Tümü
-                    <i class="fa fa-angle-down ml-3"></i>
-                </button>
-                <div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-26px, 34px, 0px);">
-                    <a class="dropdown-item" href="#">Tümü</a>
-                    <a class="dropdown-item" href="#">Yapılacak İşler</a>
-                    <a class="dropdown-item" href="#">Tamamlananlar</a>
-                </div>
+        <div class="col-xl-3">
+            <div class="form-group">
+                <select wire:model="statusSelectBox" class="form-control default-select">
+                    <option value="">Tümü</option>
+                    <option value="0">Yapılacak İşler</option>
+                    <option value="1">Tamamlananlar</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-xl-6 text-left">
+            <div wire:loading class="spinner-border" role="status">
+                <span class="sr-only">Loading...</span>
             </div>
         </div>
         <div class="col-xl-3 text-right">
@@ -24,42 +26,49 @@
                 <div class="card-header border-0 pb-0">
                     <h5 class="card-title">{{ $listHeading->name }}</h5>
                     <div>
-                        <span class="badge badge-xs light badge-secondary">{{ $listHeading->status }}</span>
+                        @if($listHeading->status === 1)
+                        <span class="badge badge-xs light badge-success">Tamamlandı</span>
+                        @else
+                        <span class="badge badge-xs light badge-warning">Yapılacak</span>
+                        @endif
 
                         <div class="dropdown custom-dropdown">
                             <div class="btn sharp btn-primary tp-btn" data-toggle="dropdown" aria-expanded="false">
                                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18px" height="18px" viewBox="0 0 24 24" version="1.1"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><rect x="0" y="0" width="24" height="24"></rect><circle fill="#000000" cx="12" cy="5" r="2"></circle><circle fill="#000000" cx="12" cy="12" r="2"></circle><circle fill="#000000" cx="12" cy="19" r="2"></circle></g></svg>
                             </div>
                             <div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-120px, 40px, 0px);">
-                                <a class="dropdown-item" href="#">Yapılacaklar</a>
-                                <a class="dropdown-item" href="#">Tamamlandı</a>
+                                <a class="dropdown-item" wire:click="changeStatusList({{ $listHeading->id }}, 0)">Yapılacaklar</a>
+                                <a class="dropdown-item" wire:click="changeStatusList({{ $listHeading->id }}, 1)">Tamamlandı</a>
                                 <a class="dropdown-item" href="#">Düzenle</a>
                                 <a class="dropdown-item" href="#">Sil</a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="card-body">
+                <div class="card-body"><form action="">
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" placeholder="Görev Ekle">
                         <div class="input-group-append">
                             <button class="btn btn-primary" type="button">Ekle</button>
                         </div>
                     </div>
+                    </form>
                     <div id="DZ_W_Todo4" class="widget-media dz-scroll height250 ps ps--active-y">
                         <ul class="timeline">
+                            @foreach($listHeading->getListContents as $getContents)
                             <li>
                                 <div class="timeline-panel">
                                     <div class="custom-control custom-checkbox checkbox-warning check-lg mr-3">
-                                        <input type="checkbox" class="custom-control-input" id="customCheckBox2" required="">
-                                        <label class="custom-control-label" for="customCheckBox2"></label>
+                                        <input type="checkbox" wire:click="changeStatusContent({{ $getContents->id }})" class="custom-control-input" id="contenst{{$getContents->id}}" @if($getContents->status == 1) checked @endif >
+                                        <label class="custom-control-label" for="contenst{{$getContents->id}}"></label>
                                     </div>
                                     <div class="media-body">
-                                        <h5 class="mb-0">Stand up</h5>
+                                        <h5 class="mb-0">{{ $getContents->name }}</h5>
                                     </div>
                                     <i class="las la-trash-alt text-danger" style="margin-right: 20px"></i>
                                 </div>
                             </li>
+                            @endforeach
                         </ul>
                         <div class="ps__rail-x" style="left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; height: 370px; right: 0px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 322px;"></div></div></div>
                 </div>
@@ -67,6 +76,10 @@
         </div>
         @endforeach
 
+    </div>
+
+    <div class="d-flex justify-content-center mt-5 text-center">
+        {!! $listHeadings->links() !!}
     </div>
 
     <div wire:ignore.self class="modal fade" id="addNewList">
