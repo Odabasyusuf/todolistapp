@@ -31,12 +31,13 @@ class CategoryPage extends Component
                 $query->where('category_id', $this->category_id);
             })
             ->where(function ($query) {
-                if ($this->statusSelectBox!=null){
-                    $query
-                        ->where('status', $this->statusSelectBox);
+                if ($this->statusSelectBox != null){
+                    $query->where('status', $this->statusSelectBox);
                 }
             })
+//            ->orderBy('status', 'ASC')
             ->orderBy('id', 'DESC')
+            ->with('getListContents')
             ->paginate(12);
 
 

@@ -2,7 +2,7 @@
     <div class="row mb-4">
         <div class="col-xl-3">
             <div class="form-group">
-                <select wire:model="statusSelectBox" class="form-control default-select">
+                <select wire:model.lazy="statusSelectBox" class="form-control default-select">
                     <option value="">Tümü</option>
                     <option value="0">Yapılacak İşler</option>
                     <option value="1">Tamamlananlar</option>
@@ -54,7 +54,7 @@
                             </div>
                         </div>
                     </form>
-                    <div id="DZ_W_Todo4" class="widget-media dz-scroll height250 ps ps--active-y">
+                    <div class="widget-media dz-scroll height250 ps ps--active-y">
                         <ul class="timeline">
                             @foreach($listHeading->getListContents as $getContents)
                             <li>
