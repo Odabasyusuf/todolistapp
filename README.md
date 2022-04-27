@@ -5,7 +5,7 @@
 
 Projeyi GitHub üzerinden klonlamak için terminale yazın;
 
->   git clone git@github.com:Odabasyusuf/todolistapp.git
+>   git clone https://github.com/Odabasyusuf/todolistapp.git
 
 Kendi local makinenizde **todolistapp** isminde database oluşuturun.
 
